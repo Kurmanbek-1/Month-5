@@ -5,15 +5,15 @@ from .models import Category, Product, Review
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = 'title description price category'
+        fields = 'title description price category'.split()
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = 'name'
+        fields = 'name'.split()
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'text product'
+        fields = 'text product'.split()
 
