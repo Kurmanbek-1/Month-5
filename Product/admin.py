@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product.models import Category, Product, Review
+from Product.models import Category, Product, Review
 
 
 admin.site.register(Category)

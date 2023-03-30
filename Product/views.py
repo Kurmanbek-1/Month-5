@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view
-from product.models import Category, Product, Review
+from Product.models import Category, Product, Review
 from rest_framework.response import Response
 from .serializer import ProductSerializer, CategorySerializer, ReviewSerializer
 from rest_framework import status

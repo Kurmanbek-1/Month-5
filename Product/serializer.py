@@ -15,5 +15,5 @@ class CategorySerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'text product'.split()
+        fields = 'text Product'.split()
 
