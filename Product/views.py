@@ -1,7 +1,8 @@
+from django.db.models import Avg
 from rest_framework.decorators import api_view
 from Product.models import Category, Product, Review
 from rest_framework.response import Response
-from .serializer import ProductSerializer, CategorySerializer, ReviewSerializer
+from .serializer import ProductSerializer, CategorySerializer, ReviewSerializer, ReviewProductSerializer
 from rest_framework import status
 
 
@@ -26,7 +27,7 @@ def list_Product_detail(request, id):
 def list_Category(request):
     if request.method == 'GET':
         categories = Category.objects.all()
-        serializer = CategorySerializer(categories, many=False)
+        serializer = CategorySerializer(categories, many=True)
         return Response(data=serializer.data)
 
 @api_view(['GET'])
@@ -54,5 +55,11 @@ def list_Review_detail(request, id):
     except Review.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND,
                         data={'Ошибка': 'Этот объект не найдет!'})
-    serializer = ReviewSerializer(reviews)
+    serializer = ReviewSerializer(reviews, many=True)
+    return Response(data=serializer.data)
+
+@api_view(['GET'])
+def products_reviews(request):
+    products = Product.objects.all()
+    serializer = ReviewProductSerializer(products, many=True)
     return Response(data=serializer.data)
