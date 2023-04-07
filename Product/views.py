@@ -136,6 +136,7 @@ def list_Review_detail(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
 @api_view(['GET'])
 def products_reviews(request):
     products = Product.objects.all()
