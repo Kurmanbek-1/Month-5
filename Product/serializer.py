@@ -61,3 +61,4 @@ class ReviewValidateSerializer(serializers.Serializer):
             raise ValidationError('Такого продукта не существует!')
         return product_id
 
+

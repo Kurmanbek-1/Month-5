@@ -137,6 +137,7 @@ def list_Review_detail(request, id):
 
 
 
+
 @api_view(['GET'])
 def products_reviews(request):
     products = Product.objects.all()

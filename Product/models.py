@@ -13,6 +13,7 @@ class Category(models.Model):
     def product_count(self):
         return self.product_set.count()
 
+
 class Product(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
