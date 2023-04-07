@@ -2,26 +2,23 @@ from django.db.models import Avg
 from rest_framework import serializers
 from .models import Category, Product, Review
 from rest_framework.exceptions import ValidationError
-
-
+# =================================================================================
 class ReviewSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Review
         fields = 'id text stars product_id'.split()
-
+# =================================================================================
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = 'id title price description category_name'.split()
-
-
+# =================================================================================
 class CategorySerializer(serializers.ModelSerializer):
     product_count = ProductSerializer
     class Meta:
         model = Category
         fields = 'name product_count'.split()
-
+# =================================================================================
 class ReviewProductSerializer(serializers.Serializer):
     average_rating = serializers.SerializerMethodField()
     id = serializers.UUIDField(read_only=True)
@@ -32,6 +29,8 @@ class ReviewProductSerializer(serializers.Serializer):
         avg_rating = obj.reviews.aggregate(avg_rating=Avg('stars'))['avg_rating']
         return round(avg_rating, 2) if avg_rating is not None else 0.0
 
+# =================================================================================
+# =================================================================================
 
 class ProductValidateSerializer(serializers.Serializer):
     title = serializers.CharField(required=True)
@@ -45,10 +44,10 @@ class ProductValidateSerializer(serializers.Serializer):
         except Category.DoesNotExist:
             raise ValidationError(f'Category with id {category_id} not found!')
         return category_id
-
+# =================================================================================
 class CategoryValidateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
-
+# =================================================================================
 class ReviewValidateSerializer(serializers.Serializer):
     stars = serializers.IntegerField()
     text = serializers.CharField()

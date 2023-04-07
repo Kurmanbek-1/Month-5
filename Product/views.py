@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from rest_framework.decorators import api_view
 from Product.models import Category, Product, Review
 from rest_framework.response import Response
@@ -8,6 +6,7 @@ from .serializer import ProductSerializer, CategorySerializer, \
     ProductValidateSerializer, CategoryValidateSerializer, ReviewValidateSerializer
 from rest_framework import status
 
+# =================================================================================
 
 @api_view(['GET', 'POST'])
 def list_Product(request):
@@ -54,6 +53,7 @@ def list_Product_detail(request, id):
         products.save()
         return Response(data=ProductSerializer(products).data)
 
+# =================================================================================
 
 @api_view(['GET', 'POST'])
 def list_Category(request):
@@ -91,6 +91,7 @@ def list_Category_detail(request, id):
         categories.save()
         return Response(data=CategorySerializer(categories).data)
 
+# =================================================================================
 
 @api_view(['GET', 'POST'])
 def list_Review(request):
@@ -109,8 +110,6 @@ def list_Review(request):
         reviews = Review.objects.create(product_id=product_id, stars=stars,
                                         text=text)
         return Response(data=ReviewSerializer(reviews).data)
-
-
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -135,8 +134,7 @@ def list_Review_detail(request, id):
         list_Review_detail.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-
+# =================================================================================
 
 @api_view(['GET'])
 def products_reviews(request):
