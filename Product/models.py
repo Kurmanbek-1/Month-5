@@ -13,13 +13,14 @@ class Category(models.Model):
     def product_count(self):
         return self.product_set.count()
 
-
 class Product(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     price = models.IntegerField(default=1)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  blank=True)
+
+
     def __str__(self):
         return self.title
 
@@ -39,11 +40,9 @@ class Product(models.Model):
 class Review(models.Model):
     CHOICES = ((i, '* ' * i) for i in range(1, 6))
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
-                              related_name='reviews')
+                                related_name='reviews')
     stars = models.IntegerField(choices=CHOICES)
     text = models.TextField()
 
     def __str__(self):
         return self.text
-
-
