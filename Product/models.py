@@ -16,7 +16,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.IntegerField(default=1)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 blank=True)
+                                 blank=True, null=True)
     def __str__(self):
         return self.title
 
