@@ -1,12 +1,13 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
-from users.serializer import UserLoginvalidateSerialzer, UserCreateValidateSerializer, ConfirmUserValidateSerializer
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+# from rest_framework import status
+# from rest_framework.authtoken.models import Token
+# from django.contrib.auth import authenticate
+from users.serializer import (UserLoginvalidateSerialzer, UserCreateValidateSerializer,
+                              ConfirmUserValidateSerializer)
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
-from .models import ConfirmUser
+# from .models import ConfirmUser
 
 
 class AuthorizationApiView(CreateAPIView):
@@ -19,10 +20,10 @@ class RegistrationApiView(CreateAPIView):
     serializer_class = UserCreateValidateSerializer
 
 
-class UserCreateAPIView(CreateAPIView):
+class UserExaminationAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = ConfirmUserValidateSerializer
-    
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # @api_view(['POST'])

@@ -15,7 +15,7 @@ class UserLoginvalidateSerialzer(serializers.Serializer):
 
 
 class UserCreateValidateSerializer(serializers.Serializer):
-    # id_active = serializers.BooleanField(required=False, default=False)
+    id_active = serializers.BooleanField(required=False, default=False)
     username = serializers.CharField()
     password = serializers.IntegerField()
 
@@ -38,11 +38,4 @@ class ConfirmUserValidateSerializer(serializers.Serializer):
             return user_id
         raise ValidationError("User_id does not exists!")
 
-# -----------------------------------------------------------------------------------------------
 
-# from rest_framework import serializers
-#
-# class UserConfirmationSerializer(serializers.Serializer):
-#     confirmation_code = serializers.CharField(max_length=10)
-
-# -----------------------------------------------------------------------------------------------
