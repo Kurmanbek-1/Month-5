@@ -11,7 +11,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = 'id title price description category_name'.split()
+        fields = 'id title price description category category_name'.split()
 # =================================================================================
 class CategorySerializer(serializers.ModelSerializer):
     product_count = ProductSerializer
@@ -44,6 +44,7 @@ class ProductValidateSerializer(serializers.Serializer):
         except Category.DoesNotExist:
             raise ValidationError(f'Category with id {category_id} not found!')
         return category_id
+    
 # =================================================================================
 class CategoryValidateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
